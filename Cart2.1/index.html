@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Styles/normalize.css">
+    <link rel="stylesheet" href="/Styles/style.css">
+    <script src="https://kit.fontawesome.com/1c0f15b938.js" crossorigin="anonymous"></script>
+  <title>Carrito de compras</title>
+</head>
+<body>
+  <header>
+    <nav class="menu-nav">
+      <ul class="menu">
+        <li>GameSauce <i class="fas fa-gamepad"></i></li>
+        <li>
+          <button class="btnToggleCreate" id="showPopupBtn" onclick="openCreateProduct()">
+            Create Product
+          </button>
+        </li>
+      </ul>
+    </nav>
+    <div class="header-cart">
+      <div class="banner-phrase">
+        <h1>GameSauce <i class="fas fa-gamepad"></i></h1>
+      </div>
+    </div>
+  </header>
+  <main id="principal-container"> 
+    <section class="principal-container">
+      <div class="principal-container-title">
+        <h1>Juegos de actualidad</h1>
+      </div>
+      <div id="cards-container">
+
+      </div>
+    </section>
+    <div class="overlay" id="overlay">
+      <div class="popup">
+        <div class="popuptext" id="myPopup">
+          <a href="#" class="btn-close-popup" onclick="openCreateProduct()"><i class="fas fa-window-close"></i></i></a>
+          <div class="popup-inputs">
+            <label>Nombre del producto</label>
+            <input type="text" name="" id="" class="quantity-input">
+            <label>Descripcion del producto</label>
+            <input type="text" name="" id="" class="quantity-input">
+            <label>Precio del producto</label>
+            <input type="text" name="" id="" class="quantity-input">
+            <label>URL imagen del producto</label>
+            <input type="text" name="" id="" class="quantity-input">
+            <div class="">
+              <button class="createProductBtn">Registrar producto</button>
+            </div>
+          </div>
+        </div>
+      </div> 
+    </div>
+  </main>
+  <div id="carrito"></div>
+  <footer> 
+    <ul class="footer-info">
+      <li>David Torres &copy; 2021</li>
+      <li>Aplicación web de muestra</li>
+    </ul>
+  </footer>
+  <script src="/Scripts/colors.js"></script>
+  <script src="/Scripts/app.js"></script>
+</body>
+</html>

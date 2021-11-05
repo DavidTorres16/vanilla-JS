@@ -6,17 +6,20 @@ const showPopupBtn = document.querySelector('#showPopupBtn')
 
 let selectedItem = []
 
+const addImageToProduct = (e) =>{
+  const image_preview = document.querySelector('#img-preview')
+  const img_url = document.querySelector('#image-url');
+  image_preview.setAttribute('style', `background-image: url(${img_url.value})`)
+}
 
-showCartContent()
 
 create_Cards();
 function create_Cards() {
   colors.forEach((color) => {
-    let clicks = 0
+    card_bottom_hidden_content = document.createElement('div')
     const card = document.createElement('div');
     const card_top = document.createElement('div')
     const card_bottom = document.createElement('div')
-    card_bottom_hidden_content = document.createElement('div')
     const title_card = document.createElement('h2');
     const card_description = document.createElement('p');
     const button_card = document.createElement('button');
@@ -26,13 +29,13 @@ function create_Cards() {
     card_top.classList.add('card_top')
     card_bottom.classList.add('card_bottom')
     card_bottom_hidden_content.classList.add('hidden_card_content')
+    button_card.classList.add('buybtn')
     button_card.setAttribute('id', color.id);
     button_card.setAttribute('data-selected', false)
-    button_card.classList.add('buybtn')
     button_card.addEventListener('click', createCart)
     button_card.textContent = 'Add';
-    title_card.textContent = color.name.toUpperCase();
     title_card.style.textAlign = "left"
+    title_card.textContent = color.name.toUpperCase();
     card_description.textContent = color.description;
     card_price.textContent = color.price;
     image_color.src = color.img;    
@@ -54,7 +57,7 @@ function create_Cards() {
   }); 
 }
 
-function showCardContent(e){
+function showCard(e){
   console.log(e.target.id)
   card_bottom_hidden_content.classList.toggle("show_card_content")
 }
@@ -78,11 +81,46 @@ function createCart (e){
       return objeto.id == idSelected
     })
     selectedItem[itemIndex].timesSelected = (selectedItem[itemIndex].timesSelected+1)
-    console.log(selectedItem[itemIndex])
   }
+  showCartContent()
+}
+
+const addItemToCart = (e) =>{
+  const itemId = e.target.dataset.id
+  const item = selectedItem.findIndex((objeto) =>{
+    return objeto.id == itemId
+  })
+  selectedItem[item].timesSelected = (selectedItem[item].timesSelected+1);
+  showCartContent()
+}
+
+const deleteItemFromCart = (e) =>{
+  const itemId = e.target.dataset.id
+  const item = selectedItem.findIndex((objeto) =>{
+    return objeto.id == itemId
+  })
+  if(window.confirm("¿Está seguro de eliminar este elemento del carrito?")){
+    selectedItem.splice(item, 1)
+  }
+  showCartContent()
+}
+
+const deleteOneItemFromCart = (e) =>{
+  const itemId = e.target.dataset.id
+  const item = selectedItem.findIndex((objeto) =>{
+    return objeto.id == itemId
+  })
+  if(selectedItem[item].timesSelected > 1){
+    selectedItem[item].timesSelected = (selectedItem[item].timesSelected-1);
+  }
+  else{
+      deleteItemFromCart(e)
+  }
+  showCartContent()
 }
 
 function showCartContent(){
+  carrito.innerHTML = ''
   selectedItem.map((item) =>{
     const cartItemIndex = colors.findIndex((objeto)=>{
       return objeto.id == item.id
@@ -90,13 +128,52 @@ function showCartContent(){
     cartItem = colors[cartItemIndex]
     const itemInCartCard = document.createElement('div')
     const itemInCartTitle = document.createElement('h1')
+    const itemInCartPrice = document.createElement('p')
+    const itemInCartQuantity = document.createElement('p')
+    const addItem = document.createElement('button')
+    const deleteOneItem = document.createElement('button')
+    const deleteWholeItem = document.createElement('button')
 
+    addItem.classList.add('cart-card-button')
+    deleteOneItem.classList.add('cart-card-button')
+    deleteWholeItem.classList.add('cart-card-button')
+
+    addItem.classList.add('cart-card-button-plus')
+    deleteOneItem.classList.add('cart-card-button-less')
+    deleteWholeItem.classList.add('cart-card-button-delete')
+
+    addItem.setAttribute('data-id', item.id)
+    deleteOneItem.setAttribute('data-id', item.id)
+    deleteWholeItem.setAttribute('data-id', item.id)
+    
+    addItem.textContent = '+'
+    deleteOneItem.textContent = '-'
+    deleteWholeItem.textContent = 'Borrar'
+
+    addItem.addEventListener('click', addItemToCart)
+    deleteOneItem.addEventListener('click', deleteOneItemFromCart)
+    deleteWholeItem.addEventListener('click', deleteItemFromCart)
+
+
+    itemInCartCard.classList.add('cart-card')
+    
     itemInCartTitle.textContent = cartItem.name
+    itemInCartPrice.textContent = cartItem.price
+    itemInCartQuantity.textContent = item.timesSelected
     
     itemInCartCard.appendChild(itemInCartTitle)
+    itemInCartCard.appendChild(itemInCartPrice)
+    itemInCartCard.appendChild(itemInCartQuantity)
+    itemInCartCard.appendChild(addItem)
+    itemInCartCard.appendChild(deleteOneItem)
+    itemInCartCard.appendChild(deleteWholeItem)
     carrito.appendChild(itemInCartCard)
   })
+  console.log(selectedItem)
 }
 
-
+const showCart = () =>{
+  console.log('hola')
+  carrito.classList.toggle('show-cart')
+}
 

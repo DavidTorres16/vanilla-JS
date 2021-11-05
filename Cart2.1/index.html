@@ -20,6 +20,11 @@
           </button>
         </li>
       </ul>
+      <div class="cart-button">
+        <button id="show-cart-btn" onclick="showCart()">
+          <i class="fas fa-cart-plus"></i>
+        </button>
+      </div>
     </nav>
     <div class="header-cart">
       <div class="banner-phrase">
@@ -39,25 +44,37 @@
     <div class="overlay" id="overlay">
       <div class="popup">
         <div class="popuptext" id="myPopup">
-          <a href="#" class="btn-close-popup" onclick="openCreateProduct()"><i class="fas fa-window-close"></i></i></a>
-          <div class="popup-inputs">
-            <label>Nombre del producto</label>
-            <input type="text" name="" id="" class="quantity-input">
-            <label>Descripcion del producto</label>
-            <input type="text" name="" id="" class="quantity-input">
-            <label>Precio del producto</label>
-            <input type="text" name="" id="" class="quantity-input">
-            <label>URL imagen del producto</label>
-            <input type="text" name="" id="" class="quantity-input">
-            <div class="">
-              <button class="createProductBtn">Registrar producto</button>
+          <div class="popup-title">
+            <div class="popup-title-icons">
+              <h3>GameSauce <i class="fas fa-gamepad"></i></h3>
             </div>
+            <div class="popup-title-icons">
+              <a href="#" class="btn-close-popup" onclick="openCreateProduct()"><i class="fas fa-window-close"></i></i></a>
+            </div>
+          </div>
+          <div class="popup-content">
+            <div class="popup-inputs">
+              <label>Nombre del producto</label>
+              <input type="text" name="" id="" class="quantity-input">
+              <label>Descripcion del producto</label>
+              <textarea class="quantity-input" maxlength="40"></textarea>
+              <label>Precio del producto</label>
+              <input type="text" name="" id="" class="quantity-input">
+              <label>URL imagen del producto</label>
+              <input type="text" name="" id="image-url" class="quantity-input" onchange="addImageToProduct()">
+            </div>
+            <div class="img-preview" id="img-preview">
+            </div>
+          </div>
+          <div>
+            <button class="createProductBtn">Registrar producto</button>
           </div>
         </div>
       </div> 
     </div>
+    <div id="carrito" class="carrito">
+    </div>
   </main>
-  <div id="carrito"></div>
   <footer> 
     <ul class="footer-info">
       <li>David Torres &copy; 2021</li>

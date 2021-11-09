@@ -80,7 +80,11 @@ function createCart (e){
     const itemIndex = selectedItem.findIndex((objeto) =>{
       return objeto.id == idSelected
     })
-    selectedItem[itemIndex].timesSelected = (selectedItem[itemIndex].timesSelected+1)
+    if(itemIndex == -1){
+      selectedItem.push({id: idSelected, timesSelected: 1})
+    }else{
+      selectedItem[itemIndex].timesSelected = (selectedItem[itemIndex].timesSelected+1)
+    }
   }
   showCartContent()
 }

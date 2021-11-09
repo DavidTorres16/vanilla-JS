@@ -385,6 +385,9 @@ footer{
   width: 38%;
   position: absolute;
   visibility: hidden;
+  right:  0;
+  top:3rem;
+  background: #fff;
 }
 
 .carrito h1{

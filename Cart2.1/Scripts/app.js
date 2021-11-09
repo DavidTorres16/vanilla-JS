@@ -130,6 +130,8 @@ function showCartContent(){
       return objeto.id == item.id
     })
     cartItem = colors[cartItemIndex]
+    const productQuantity = document.getElementById('cant-productos')
+    const productsValue = document.getElementById('valor-productos')
     const itemInCartCard = document.createElement('div')
     const itemInCartTitle = document.createElement('h1')
     const itemInCartPrice = document.createElement('p')
@@ -158,7 +160,7 @@ function showCartContent(){
     deleteOneItem.addEventListener('click', deleteOneItemFromCart)
     deleteWholeItem.addEventListener('click', deleteItemFromCart)
 
-
+    
     itemInCartCard.classList.add('cart-card')
     
     itemInCartTitle.textContent = cartItem.name

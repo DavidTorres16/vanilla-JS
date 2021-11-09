@@ -387,7 +387,9 @@ footer{
   visibility: hidden;
   right:  0;
   top:3rem;
-  background: #fff;
+  background: #151515;
+  border: #151515;
+  border-radius: 5px;
 }
 
 .carrito h1{
@@ -399,8 +401,9 @@ footer{
 }
 
 .cart-card{
+  background: #a0a0a0;
   border:#0c0f0a 1px solid;
-  border-radius: 3px;
+  border-radius: 5px;
   padding: 0.5rem 1rem;
   display: flex;
   justify-content: space-between;
